@@ -21,29 +21,45 @@ Basically, not losing too much time on easy tasks.
             [primaryKeyColumn1 primaryKeyColumnMetaData1, primaryKeyColumn2 primaryKeyColumnMetaData2, ... , primaryKeyColumnN primaryKeyColumnMetaDataN]
         ]
 
-2) registerTable: Generates the Stored Procedure, based on the output data structure of getTableInfo (only with the mandatory columns).
+2) (register|modify)Table: Generates the Stored Procedure, based on the output data structure of getTableInfo (only with the mandatory columns).
 
 3) combinatoryTableInfoStart: Using the output data structure of getTableInfo, calls registerTable with all the possible combinations of optional columns. 
 
-    If you have [idKey1, idKey2, idKey3, idKey4], as optional columns.
+    If you have [idKey1, idKey2, idKey3, idKey4], as OPTIONAL columns.
 
     Then you may see this function input as [1,1,1] and generation the calls:
 
         registerTable([mandatoryColumns + [0,0,0]])
+        
+        modifyTable([mandatoryColumns + [0,0,0] + primaryKeyColumns])
 
         registerTable([mandatoryColumns + [0,0,1]])
 
+        modifyTable([mandatoryColumns + [0,0,1] + primaryKeyColumns])
+
         registerTable([mandatoryColumns + [0,1,0]])
+
+        modifyTable([mandatoryColumns + [0,1,0] + primaryKeyColumns])
 
         registerTable([mandatoryColumns + [0,1,1]])
 
+        modifyTable([mandatoryColumns + [0,1,1] + primaryKeyColumns])
+
         registerTable([mandatoryColumns + [1,0,0]])
+
+        modifyTable([mandatoryColumns + [1,0,0] + primaryKeyColumns])
 
         registerTable([mandatoryColumns + [1,0,1]])
 
+        modifyTable([mandatoryColumns + [1,0,1] + primaryKeyColumns])
+
         registerTable([mandatoryColumns + [1,1,0]])
 
+        modifyTable([mandatoryColumns + [1,1,0] + primaryKeyColumns])
+
         registerTable([mandatoryColumns + [1,1,1]])
+
+        modifyTable([mandatoryColumns + [1,1,1] + primaryKeyColumns])
 
 4) processDataBaseFile: Process the file with the database code, split it, and calls getTableInfo to structure its data. 
 
