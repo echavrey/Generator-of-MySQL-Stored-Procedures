@@ -11,23 +11,38 @@ Basically, not losing too much time on easy tasks.
 
 ### Funcions:
 1) getTableInfo: Takes the standarized code of MySQL and generate a list with the format: 
+
         [   tableName, 
+
             [mandatoryColumn1 mandatoryColumnMetaData1, mandatoryColumn2 mandatoryColumnMetaDataN, ... , mandatoryColumn1 mandatoryColumnMetaDataN],
+            
             [optionalColumn1 optionalColumnMetaData1, optionalColumn2 optionalColumnMetaDataN, ... , optionalColumn1 mandatoryColumnMetaDataN],
+
+            [primaryKeyColumn1 primaryKeyColumnMetaData1, primaryKeyColumn2 primaryKeyColumnMetaData2, ... , primaryKeyColumnN primaryKeyColumnMetaDataN]
         ]
 
 2) registerTable: Generates the Stored Procedure, based on the output data structure of getTableInfo (only with the mandatory columns).
 
 3) combinatoryTableInfoStart: Using the output data structure of getTableInfo, calls registerTable with all the possible combinations of optional columns. 
+
     If you have [idKey1, idKey2, idKey3, idKey4], as optional columns.
+
     Then you may see this function input as [1,1,1] and generation the calls:
+
         registerTable([mandatoryColumns + [0,0,0]])
+
         registerTable([mandatoryColumns + [0,0,1]])
+
         registerTable([mandatoryColumns + [0,1,0]])
+
         registerTable([mandatoryColumns + [0,1,1]])
+
         registerTable([mandatoryColumns + [1,0,0]])
+
         registerTable([mandatoryColumns + [1,0,1]])
+
         registerTable([mandatoryColumns + [1,1,0]])
+
         registerTable([mandatoryColumns + [1,1,1]])
 
 4) processDataBaseFile: Process the file with the database code, split it, and calls getTableInfo to structure its data. 
