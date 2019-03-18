@@ -43,7 +43,9 @@ dataBaseName: Specify the name of the DataBase on the File.
 
 ### 1) Just a table: 
 You take the table code, changing manually the change of line by "\n", for example: 
+
 z="\n-- -----------------------------------------------------\n-- Table `ADADB`.`Habilidad`\n-- -----------------------------------------------------\nCREATE TABLE IF NOT EXISTS `ADADB`.`Habilidad` (\n  `idHabilidad` MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,\n  `idCategoriaHabilidad` SMALLINT UNSIGNED NOT NULL,\n  `nombreHabilidad` NVARCHAR(45) NOT NULL,\n  `descripcionHabilidad` NVARCHAR(450) NOT NULL,\n  PRIMARY KEY (`idHabilidad`, `idCategoriaHabilidad`),\n  INDEX `fk_Habilidad_CategoriaHabilidad1_idx` (`idCategoriaHabilidad` ASC),\n  UNIQUE INDEX `idHabilidad_UNIQUE` (`idHabilidad` ASC),\n  CONSTRAINT `fk_Habilidad_CategoriaHabilidad1`\n    FOREIGN KEY (`idCategoriaHabilidad`)\n    REFERENCES `ADADB`.`CategoriaHabilidad` (`idCategoriaHabilidad`)\n    ON DELETE NO ACTION\n    ON UPDATE NO ACTION)\nENGINE = InnoDB;"
+
 And then call the function: combinatoryTableInfoStart(getTableInfo(z))
 
 ### 2) The file: 
