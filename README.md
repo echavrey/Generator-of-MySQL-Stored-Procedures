@@ -1,11 +1,12 @@
-# Generator of MySQL Stored Procedures
+# Generator of Java Models and Controlers, as well as MySQL Stored Procedures
  
-This program lets you automatize the insert stored procedures generation. 
- 
+This program lets you automatize the creation of all the stored procedures required for a MySQL Database.
+As well as all the models and controllers, with the connection to MySQL Database (and using the stored procedures). 
+With some modifications this could be used for creating a C# Compiler or Microsoft SQL Compiler.   
 
 ## Motivation
  
-Basically, not losing too much time on easy tasks.  
+Basically, not losing too much time on easy tasks. 
 
 ## Functionality of the software
 
@@ -18,7 +19,9 @@ Basically, not losing too much time on easy tasks.
             
             [optionalColumn1 optionalColumnMetaData1, optionalColumn2 optionalColumnMetaDataN, ... , optionalColumn1 mandatoryColumnMetaDataN],
 
-            [primaryKeyColumn1 primaryKeyColumnMetaData1, primaryKeyColumn2 primaryKeyColumnMetaData2, ... , primaryKeyColumnN primaryKeyColumnMetaDataN]
+            [primaryKeyColumn1 primaryKeyColumnMetaData1, primaryKeyColumn2 primaryKeyColumnMetaData2, ... , primaryKeyColumnN primaryKeyColumnMetaDataN],
+
+
         ]
 
 2) (register|modify)Table: Generates the Stored Procedure, based on the output data structure of getTableInfo (only with the mandatory columns).
